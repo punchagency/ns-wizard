@@ -15,8 +15,8 @@ class AgentState(TypedDict):
 
 class ResolveQuery(BaseModel):
     user_request: str
-    url: str
-    thread_id: str
+    url: str = "https://www.nowsecure.com/"
+    thread_id: str = "default_user"
 
 
 
