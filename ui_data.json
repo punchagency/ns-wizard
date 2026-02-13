@@ -1,0 +1,90 @@
+{
+  "navigation_links": [
+    {
+      "text": "Test Your App",
+      "x": 1019.734375,
+      "y": 63,
+      "width": 133.265625,
+      "height": 47,
+      "horizontal_position": "right"
+    },
+    {
+      "text": "Products",
+      "x": 500.328125,
+      "y": 78.5,
+      "width": 96.78125,
+      "height": 16,
+      "horizontal_position": "center"
+    },
+    {
+      "text": "Solutions",
+      "x": 597.109375,
+      "y": 78.5,
+      "width": 100.515625,
+      "height": 16,
+      "horizontal_position": "center"
+    },
+    {
+      "text": "Customer",
+      "x": 697.625,
+      "y": 78.5,
+      "width": 101.921875,
+      "height": 16,
+      "horizontal_position": "center"
+    },
+    {
+      "text": "Resources",
+      "x": 799.546875,
+      "y": 78.5,
+      "width": 105.28125,
+      "height": 16,
+      "horizontal_position": "center"
+    },
+    {
+      "text": "Company",
+      "x": 904.828125,
+      "y": 78.5,
+      "width": 99.90625,
+      "height": 16,
+      "horizontal_position": "right"
+    }
+  ],
+  "buttons": [
+    "Reject All",
+    "Accept All",
+    "Customize"
+  ],
+  "headings": [
+    "An Essential Guide to the OWASP Mobile App Security (MAS) Project",
+    "Compliance And Privacy Testing",
+    "The CPO\u2019s Guide to Mobile App Privacy Trends in 2026",
+    "NowSecure Mobile Application Risk Intelligence (MARI)",
+    "Compliance & Reporting",
+    "T-Mobile Protects the Apps that Connect 130 Million Customers",
+    "Resources",
+    "Solutions",
+    "End-User Computing & Third-Party Risk Leaders",
+    "NowSecure Guided",
+    "Security Leaders (CISO)",
+    "NowSecure Workstation",
+    "Get Mobile Application Risk Management. Test don\u2019t guess.",
+    "Mobile App Risk Is Business Risk",
+    "Current methods put organizations at risk",
+    "Privacy & Compliance Leaders (CCO)",
+    "AppSec & Developer Leaders",
+    "The Right Risk Management Solution for Every Need",
+    "NowSecure Products",
+    "NowSecure Platform",
+    "Orchestrated Remediation",
+    "Risk Classification",
+    "NowSecure Services",
+    "Learn How to Grow\nYour Mobile AppSec Program",
+    "Who needs MARM?",
+    "NowSecure PTaaS",
+    "Company",
+    "NowSecure Privacy",
+    "Progressive Testing",
+    "One Platform for Mobile App Risk Management (MARM)",
+    "NowSecure Academy"
+  ]
+}
