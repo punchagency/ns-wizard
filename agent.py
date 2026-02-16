@@ -16,7 +16,18 @@ if sys.platform == 'win32':
 
 load_dotenv()
 
-async def handle_feature_not_found():
+async def handle_feature_not_found(state: AgentState):
+    llm = ChatOpenAI(model = "gpt-4o", temperature = 0, api_key = os.getenv("api_key"))
+    prompt = f"""Your role is to refine this response "Feature or service not found"
+    for this user request {state['goal']} on the website {state["url"]}.
+    Check the UI Data: {json.dumps(state['ui_data'])} for a close match and ask the user if 
+    he/she is interested in that. If there isn't any close match, ask the user to verify if it is 
+    available on NowSecure.
+
+    """
+    result = await llm.ainvoke(prompt)
+    state["final_walkthrough"] = result.content
+    return state
 
 
 async def extract_ui(state: AgentState) -> AgentState:
@@ -94,51 +105,6 @@ async def planner(state: AgentState) -> AgentState:
 
 
 
-# async def executor(state: AgentState) -> AgentState:
-#     async with async_playwright() as p:
-#         # 1. Start Browser
-#         browser = await p.chromium.launch(headless=True)
-#         context = await browser.new_context(
-#             user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
-#         )
-#         page = await context.new_page()
-
-#         # 2. Go to URL ONCE
-#         print(f"--- Navigating to {state['url']} ---")
-#         await page.goto(state["url"], wait_until="domcontentloaded", timeout=60000)
-#         await asyncio.sleep(3) 
-
-#         # 3. Process the entire plan in sequence without reloading
-#         for step in state["plan"].get("steps", []):
-#             action = step.get("action", "CLICK").upper()
-#             label = step.get("label")
-            
-#             # Use a robust selector that handles partial matches
-#             locator = page.get_by_text(label, exact=False).first
-            
-#             if await locator.count() > 0:
-#                 print(f"Action: {action} on '{label}'")
-#                 await locator.scroll_into_view_if_needed()
-                
-#                 if action == "CLICK":
-#                     # force=True is key for elements inside menus
-#                     await locator.click(force=True, timeout=5000)
-#                 elif action == "HOVER":
-#                     await locator.hover()
-                
-#                 # Settle time after each action to let menus/pages load
-#                 await asyncio.sleep(2) 
-#             else:
-#                 print(f"Warning: Element '{label}' not found during execution.")
-
-#         # 4. Capture the FINAL state of the page after ALL steps
-#         state["page_content"] = await page.content()
-        
-#         # 5. Cleanup
-#         await browser.close()
-        
-#     return state
-
 async def executor(state: AgentState) -> AgentState:
     async with async_playwright() as p:
         browser = await p.chromium.launch(headless=True)
@@ -206,13 +172,21 @@ async def humanize(state: AgentState) -> AgentState:
     GOAL: {state['goal']}
     PLAN: {json.dumps(state['plan'])}
     UI DATA: {json.dumps(state['ui_data'])}
+
+    Finally if {state['success']} is false, then you should follow the following:
+    Refine this response "Feature or service not found"
+    for this user request {state['goal']} on the website {state["url"]}.
+    Check the UI Data: {json.dumps(state['ui_data'])} for a close match and ask the user if 
+    he/she is interested in that. If there isn't any close match, ask the user to verify if it is 
+    available on NowSecure.
     """
     response = await llm.ainvoke(prompt)
     state["final_walkthrough"] = response.content
     return state
 
 def should_continue(state: AgentState):
-    if state["success"]: return "humanize"
+    if state["success"] == True: return "humanize"
+    elif state["success"] == False: return "handle_feature"
     return END if state["round"] >= 3 else "planner"
 
 # --- GRAPH BUILDER ---
@@ -222,13 +196,15 @@ workflow.add_node("planner", planner)
 workflow.add_node("executor", executor)
 workflow.add_node("validator", validator)
 workflow.add_node("humanize", humanize)
+workflow.add_node("handle_feature", handle_feature_not_found)
 
 workflow.set_entry_point("extract_ui")
 workflow.add_edge("extract_ui", "planner")
 workflow.add_edge("planner", "executor")
 workflow.add_edge("executor", "validator")
-workflow.add_conditional_edges("validator", should_continue, {"planner": "planner", "humanize": "humanize", END: END})
+workflow.add_conditional_edges("validator", should_continue, {"planner": "planner", "humanize": "humanize", "handle_feature": "handle_feature", END: END})
 workflow.add_edge("humanize", END)
+workflow.add_edge("handle_feature", END)
 
 graph = workflow.compile(checkpointer=MemorySaver())
 
@@ -253,14 +229,14 @@ async def main(url: str, goal: str, thread_id: str):
     # 3. Log/Print for debugging
     print("\n" + "="*60)
     print("FINAL RESULT\n")
-    print(result if result else "FAILED")
+    print(result)
     print("="*60)
 
     return result if result else "Feature/Service not found"
 
 if __name__ == "__main__":
     url = "https://www.nowsecure.com/"
-    goal = "How do I check for investors"
+    goal = "How do I check for football updates"
     thread_id = "default_user"
     asyncio.run(main(url=url, goal=goal, thread_id=thread_id))
 
