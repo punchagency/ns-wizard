@@ -16,55 +16,8 @@ if sys.platform == 'win32':
 
 load_dotenv()
 
+async def handle_feature_not_found():
 
-# async def extract_ui(state: AgentState) -> AgentState:
-#     url = state["url"]
-#     async with async_playwright() as p:
-#         browser = await p.chromium.launch(headless=True, args=["--disable-blink-features=AutomationControlled"])
-#         context = await browser.new_context(
-#             user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
-#         )
-#         context.set_default_navigation_timeout(90000)
-#         page = await context.new_page()
-#         try:
-    
-#             await page.goto(url, wait_until="domcontentloaded", timeout=60000)
-#             await asyncio.sleep(5) # Allow JS to hydrate
-
-#             ui_data = await page.evaluate("""
-#                 () => {
-#                     const results = { navigation_links: [], buttons: [], headings: [] };
-#                     const isVisible = (el) => {
-#                         const style = window.getComputedStyle(el);
-#                         return style.display !== 'none' && style.visibility !== 'hidden' && el.offsetWidth > 0;
-#                     };
-#                     const getPos = (rect) => rect.x < window.innerWidth / 3 ? "left" : (rect.x > (window.innerWidth * 2) / 3 ? "right" : "center");
-                    
-#                     const collect = (root) => {
-#                         root.querySelectorAll("nav a, header a, button, [role='button'], a.click-data").forEach(el => {
-#                             if (!isVisible(el)) return;
-#                             const rect = el.getBoundingClientRect();
-#                             const text = (el.innerText || el.getAttribute('aria-label') || "").trim();
-#                             if (!text) return;
-#                             const data = { text, position: getPos(rect) };
-#                             if (el.tagName === 'A') results.navigation_links.push(data);
-#                             else results.buttons.push(data);
-#                         });
-#                         root.querySelectorAll("h1, h2, h3").forEach(h => {
-#                             if (isVisible(h) && h.innerText.trim()) results.headings.push(h.innerText.trim());
-#                         });
-#                         // Piercing Shadow DOM
-#                         root.querySelectorAll('*').forEach(el => { if (el.shadowRoot) collect(el.shadowRoot); });
-#                     };
-#                     collect(document);
-#                     return results;
-#                 }
-#             """)
-#         finally:
-#             await browser.close()
-            
-#     state["ui_data"] = ui_data
-#     return state
 
 async def extract_ui(state: AgentState) -> AgentState:
     url = state["url"]
@@ -210,18 +163,12 @@ async def executor(state: AgentState) -> AgentState:
                 await locator.scroll_into_view_if_needed()
                 
                 if action == "CLICK":
-                    # We use a try-except to catch cases where the click
-                    # triggers a navigation vs. just opening a menu
                     try:
-                        # Start waiting for a potential navigation, but with a tiny timeout
                         async with page.expect_navigation(timeout=3000):
                             await locator.click(force=True)
                     except:
-                        # If it times out, it was likely just a menu opening. 
-                        # We force the click anyway and just keep going.
                         await locator.click(force=True)
                         
-                    # Mandatory settle time for animations/AJAX
                     await asyncio.sleep(2) 
                     
                 elif action == "HOVER":
@@ -230,7 +177,6 @@ async def executor(state: AgentState) -> AgentState:
             else:
                 print(f"Warning: Element '{label}' not found.")
 
-        # FINAL CAPTURE: Wait a bit longer at the very end to ensure the destination is loaded
         await asyncio.sleep(2)
         state["page_content"] = await page.content()
         await browser.close()
@@ -256,6 +202,7 @@ async def humanize(state: AgentState) -> AgentState:
     prompt = f"""
     Convert this plan into a user-friendly guide. 
     Mention spatial positions (left, center, right) if available in UI data.
+    Furthermore be polite and ask for user satisfaction and possible follow up questions.
     GOAL: {state['goal']}
     PLAN: {json.dumps(state['plan'])}
     UI DATA: {json.dumps(state['ui_data'])}
@@ -266,7 +213,7 @@ async def humanize(state: AgentState) -> AgentState:
 
 def should_continue(state: AgentState):
     if state["success"]: return "humanize"
-    return END if state["round"] >= 2 else "planner"
+    return END if state["round"] >= 3 else "planner"
 
 # --- GRAPH BUILDER ---
 workflow = StateGraph(AgentState)
@@ -284,7 +231,6 @@ workflow.add_conditional_edges("validator", should_continue, {"planner": "planne
 workflow.add_edge("humanize", END)
 
 graph = workflow.compile(checkpointer=MemorySaver())
-
 
 
 async def main(url: str, goal: str, thread_id: str):
@@ -310,12 +256,11 @@ async def main(url: str, goal: str, thread_id: str):
     print(result if result else "FAILED")
     print("="*60)
 
-    # 4. FINALLY return the result to the caller (FastAPI)
     return result if result else "Feature/Service not found"
 
 if __name__ == "__main__":
     url = "https://www.nowsecure.com/"
-    goal = "I want to see investors"
+    goal = "How do I check for investors"
     thread_id = "default_user"
     asyncio.run(main(url=url, goal=goal, thread_id=thread_id))
 

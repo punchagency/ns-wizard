@@ -329,7 +329,6 @@ class WebsiteWalkthroughEngine:
             if validate_execution(page_content, plan.get("success_criteria", "")):
                 print("Validation successful")
 
-                # 🔥 NEW LAYER
                 final_walkthrough = await generate_human_walkthrough(
                     plan, ui_data, goal
                 )
