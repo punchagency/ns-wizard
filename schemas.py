@@ -1,6 +1,6 @@
 from typing import Annotated, TypedDict, Optional, List
 from pydantic import BaseModel, Field
-from langchain.core.messages import BaseMessage
+from langchain_core.messages import BaseMessage
 import operator
 
 class AgentState(TypedDict):
