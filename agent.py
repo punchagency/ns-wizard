@@ -226,7 +226,7 @@ async def main(url: str, goal: str, thread_id: str):
     
     result = final_state.get("final_walkthrough")
     print(final_state.get("plan"))
-    # 3. Log/Print for debugging
+    # Log/Print for debugging
     print("\n" + "="*60)
     print("FINAL RESULT\n")
     print(result)
