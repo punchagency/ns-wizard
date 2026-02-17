@@ -31,8 +31,9 @@ function ChatMessage({ message }) {
     lines.forEach((line, index) => {
       const trimmed = line.trim()
       
-      // Handle headers - make them subtle, not too prominent
-      if (trimmed.startsWith('### ')) {
+      // Handle markdown headers (# through ######)
+      const headerMatch = trimmed.match(/^(#{1,6})\s+(.+)$/)
+      if (headerMatch) {
         if (currentParagraph.length > 0) {
           elements.push(
             <p 
@@ -43,8 +44,24 @@ function ChatMessage({ message }) {
           )
           currentParagraph = []
         }
-        const headerText = trimmed.replace(/^###\s+/, '').replace(/<[^>]*>/g, '')
-        elements.push(<h4 key={`header-${index}`} className="message-subtitle">{headerText}</h4>)
+        const headerLevel = headerMatch[1].length
+        const headerText = headerMatch[2].replace(/<[^>]*>/g, '')
+        
+        // Render appropriate heading level
+        const headingProps = { key: `header-${index}`, className: 'message-subtitle' }
+        if (headerLevel === 1) {
+          elements.push(<h1 {...headingProps}>{headerText}</h1>)
+        } else if (headerLevel === 2) {
+          elements.push(<h2 {...headingProps}>{headerText}</h2>)
+        } else if (headerLevel === 3) {
+          elements.push(<h3 {...headingProps}>{headerText}</h3>)
+        } else if (headerLevel === 4) {
+          elements.push(<h4 {...headingProps}>{headerText}</h4>)
+        } else if (headerLevel === 5) {
+          elements.push(<h5 {...headingProps}>{headerText}</h5>)
+        } else {
+          elements.push(<h6 {...headingProps}>{headerText}</h6>)
+        }
         return
       }
       
