@@ -1,0 +1,266 @@
+{
+    "Products": {
+        "url": "https://www.nowsecure.com/#",
+        "sub_items": [
+            {
+                "label": "Speak To A Specialist",
+                "url": "https://www.nowsecure.com/#"
+            },
+            {
+                "label": "Test Your App Now!",
+                "url": "https://www.nowsecure.com/nowsecure-test-your-app/"
+            },
+            {
+                "label": "Speak To A Specialist",
+                "url": "https://www.nowsecure.com/contact/"
+            },
+            {
+                "label": "NowSecure Difference",
+                "url": "https://www.nowsecure.com/nowsecure-difference/"
+            },
+            {
+                "label": "Customer Stories",
+                "url": "https://www.nowsecure.com/customers/"
+            },
+            {
+                "label": "Learn More",
+                "url": "https://www.nowsecure.com/solutions/by-need/mobile-devsecops/"
+            },
+            {
+                "label": "Learn More",
+                "url": "https://www.nowsecure.com/guided-testing/"
+            },
+            {
+                "label": "Learn More",
+                "url": "https://www.nowsecure.com/solutions/by-need/mobile-app-privacy-testing"
+            },
+            {
+                "label": "Learn More",
+                "url": "https://www.nowsecure.com/products/nowsecure-mobile-app-penetration-testing-services/"
+            },
+            {
+                "label": "Learn More",
+                "url": "https://www.nowsecure.com/solutions/by-need/mobile-standards-compliance/"
+            },
+            {
+                "label": "Learn More",
+                "url": "https://www.nowsecure.com/products/nowsecure-risk-intelligence/"
+            },
+            {
+                "label": "Learn More",
+                "url": "https://www.nowsecure.com/products/nowsecure-workstation/"
+            },
+            {
+                "label": "Learn More",
+                "url": "https://www.nowsecure.com/solutions/by-need/mobile-app-penetration-testing/"
+            },
+            {
+                "label": "Learn More",
+                "url": "https://academy.nowsecure.com/"
+            },
+            {
+                "label": "The CPO\u2019s Guide to Mobile App Privacy Trends in 2026",
+                "url": "https://nowsecure.pathfactory.com/paid-ad/cpos-guide-mobile-app-privacy-trends-2026?pf_preview=true&pf_sr=0"
+            },
+            {
+                "label": "T-Mobile Protects the Apps that Connect 130 Million Customers",
+                "url": "https://www.nowsecure.com/resources/nowsecure-ms/case-study-t-mobile?x=VmRrep&pflpid=22316"
+            },
+            {
+                "label": "An Essential Guide to the OWASP Mobile App Security (MAS) Project",
+                "url": "https://discover.nowsecure.com/c/manager-guide-owasp?x=9z-j5n#page=1"
+            },
+            {
+                "label": "Get A Demo",
+                "url": "https://www.nowsecure.com/products/nowsecure-platform/"
+            }
+        ]
+    },
+    "Solutions": {
+        "url": "https://www.nowsecure.com/solutions/",
+        "sub_items": [
+            {
+                "label": "Learn More",
+                "url": "https://www.nowsecure.com/solutions/by-need/"
+            },
+            {
+                "label": "Learn More",
+                "url": "https://www.nowsecure.com/solutions/by-industry/"
+            },
+            {
+                "label": "OWASP MASVS Benchmark Report",
+                "url": "https://info.nowsecure.com/OWASP-MASVS-Benchmark-Report-Download.html"
+            },
+            {
+                "label": "OWASP Mobile Security Testing Guide",
+                "url": "https://discover.nowsecure.com/c/manager-guide-owasp?x=LIaYZt"
+            },
+            {
+                "label": "INFOGRAPHIC: 12 Reasons Why You Need Stronger Mobile App Security",
+                "url": "https://discover.nowsecure.com/c/nowsecure-infographi?x=9z-j5n"
+            },
+            {
+                "label": "Get A Demo",
+                "url": "https://www.nowsecure.com/cta/nowsecure-platform-demo/"
+            }
+        ]
+    },
+    "Customer": {
+        "url": "https://www.nowsecure.com/#",
+        "sub_items": [
+            {
+                "label": "Speak To A Specialist",
+                "url": "https://www.nowsecure.com/#"
+            },
+            {
+                "label": "Test Your App Now!",
+                "url": "https://www.nowsecure.com/nowsecure-test-your-app/"
+            },
+            {
+                "label": "Speak To A Specialist",
+                "url": "https://www.nowsecure.com/contact/"
+            },
+            {
+                "label": "NowSecure Difference",
+                "url": "https://www.nowsecure.com/nowsecure-difference/"
+            },
+            {
+                "label": "Customer Stories",
+                "url": "https://www.nowsecure.com/customers/"
+            },
+            {
+                "label": "Learn More",
+                "url": "https://www.nowsecure.com/solutions/by-need/mobile-devsecops/"
+            },
+            {
+                "label": "Learn More",
+                "url": "https://www.nowsecure.com/guided-testing/"
+            },
+            {
+                "label": "Learn More",
+                "url": "https://www.nowsecure.com/solutions/by-need/mobile-app-privacy-testing"
+            },
+            {
+                "label": "Learn More",
+                "url": "https://www.nowsecure.com/products/nowsecure-mobile-app-penetration-testing-services/"
+            },
+            {
+                "label": "Learn More",
+                "url": "https://www.nowsecure.com/solutions/by-need/mobile-standards-compliance/"
+            },
+            {
+                "label": "Learn More",
+                "url": "https://www.nowsecure.com/products/nowsecure-risk-intelligence/"
+            },
+            {
+                "label": "Learn More",
+                "url": "https://www.nowsecure.com/products/nowsecure-workstation/"
+            },
+            {
+                "label": "Learn More",
+                "url": "https://www.nowsecure.com/solutions/by-need/mobile-app-penetration-testing/"
+            },
+            {
+                "label": "Learn More",
+                "url": "https://academy.nowsecure.com/"
+            },
+            {
+                "label": "The CPO\u2019s Guide to Mobile App Privacy Trends in 2026",
+                "url": "https://nowsecure.pathfactory.com/paid-ad/cpos-guide-mobile-app-privacy-trends-2026?pf_preview=true&pf_sr=0"
+            },
+            {
+                "label": "T-Mobile Protects the Apps that Connect 130 Million Customers",
+                "url": "https://www.nowsecure.com/resources/nowsecure-ms/case-study-t-mobile?x=VmRrep&pflpid=22316"
+            },
+            {
+                "label": "An Essential Guide to the OWASP Mobile App Security (MAS) Project",
+                "url": "https://discover.nowsecure.com/c/manager-guide-owasp?x=9z-j5n#page=1"
+            },
+            {
+                "label": "Get A Demo",
+                "url": "https://www.nowsecure.com/products/nowsecure-platform/"
+            }
+        ]
+    },
+    "Resources": {
+        "url": "https://www.nowsecure.com/resources/",
+        "sub_items": []
+    },
+    "Company": {
+        "url": "https://www.nowsecure.com/#",
+        "sub_items": [
+            {
+                "label": "Speak To A Specialist",
+                "url": "https://www.nowsecure.com/#"
+            },
+            {
+                "label": "Test Your App Now!",
+                "url": "https://www.nowsecure.com/nowsecure-test-your-app/"
+            },
+            {
+                "label": "Speak To A Specialist",
+                "url": "https://www.nowsecure.com/contact/"
+            },
+            {
+                "label": "NowSecure Difference",
+                "url": "https://www.nowsecure.com/nowsecure-difference/"
+            },
+            {
+                "label": "Customer Stories",
+                "url": "https://www.nowsecure.com/customers/"
+            },
+            {
+                "label": "Learn More",
+                "url": "https://www.nowsecure.com/solutions/by-need/mobile-devsecops/"
+            },
+            {
+                "label": "Learn More",
+                "url": "https://www.nowsecure.com/guided-testing/"
+            },
+            {
+                "label": "Learn More",
+                "url": "https://www.nowsecure.com/solutions/by-need/mobile-app-privacy-testing"
+            },
+            {
+                "label": "Learn More",
+                "url": "https://www.nowsecure.com/products/nowsecure-mobile-app-penetration-testing-services/"
+            },
+            {
+                "label": "Learn More",
+                "url": "https://www.nowsecure.com/solutions/by-need/mobile-standards-compliance/"
+            },
+            {
+                "label": "Learn More",
+                "url": "https://www.nowsecure.com/products/nowsecure-risk-intelligence/"
+            },
+            {
+                "label": "Learn More",
+                "url": "https://www.nowsecure.com/products/nowsecure-workstation/"
+            },
+            {
+                "label": "Learn More",
+                "url": "https://www.nowsecure.com/solutions/by-need/mobile-app-penetration-testing/"
+            },
+            {
+                "label": "Learn More",
+                "url": "https://academy.nowsecure.com/"
+            },
+            {
+                "label": "The CPO\u2019s Guide to Mobile App Privacy Trends in 2026",
+                "url": "https://nowsecure.pathfactory.com/paid-ad/cpos-guide-mobile-app-privacy-trends-2026?pf_preview=true&pf_sr=0"
+            },
+            {
+                "label": "T-Mobile Protects the Apps that Connect 130 Million Customers",
+                "url": "https://www.nowsecure.com/resources/nowsecure-ms/case-study-t-mobile?x=VmRrep&pflpid=22316"
+            },
+            {
+                "label": "An Essential Guide to the OWASP Mobile App Security (MAS) Project",
+                "url": "https://discover.nowsecure.com/c/manager-guide-owasp?x=9z-j5n#page=1"
+            },
+            {
+                "label": "Get A Demo",
+                "url": "https://www.nowsecure.com/products/nowsecure-platform/"
+            }
+        ]
+    }
+}
